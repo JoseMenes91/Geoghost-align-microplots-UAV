@@ -26,7 +26,7 @@ Center each point cloud around its centroid.
 Build the cross-covariance matrix between both sets.
 Apply SVD to get the optimal rotation matrix.
 Compute translation as the difference between transformed centroids.
-The result is the rotation and translation that minimizes the RMSE across all GCP pairs. With 2 points the fit is exact; with 3 or more the error is distributed.
+The result is the rotation and translation that minimizes the RMSE across all GCP pairs. With 4 points the fit is exact.
 
 ## 🛠 Installation
 
@@ -58,23 +58,23 @@ Click Open Destination Orthomosaic Viewer. A secondary window opens with an inde
 The main canvas shows the old flight (where the vector currently is); the viewer shows the new flight (where it needs to go).
 
 5. Capture Ground Control Points (GCPs)
-Find recognizable points visible in both orthomosaics (plot corners, stakes, reference markers).
+Find recognizable points visible in both orthomosaics 
 
 Origin: click Capture Origin Points → click on the main canvas → a red cross appears.
 
 Destination: click Capture Destination Points → click on the Viewer → a blue cross appears.
 
-Repeat for at least 2 pairs. With 3 or more you get a real RMSE.
+<img width="945" height="526" alt="image" src="https://github.com/user-attachments/assets/83d659e1-7d11-413b-b8d6-f5af3f76e533" />
+
+Repeat this process for at least 4 points, ideally placing one in each corner of the trial to ensure a stable and uniform alignment across the entire grid."
 
 💡 Choose points that are well spread apart. One near the center + one at a trial edge works well.
 
-6. Check the RMSE
-Calculated automatically once you have 2 complete pairs. Each row shows dX, dY and individual residual. RMSE < 0.05 m is typical with well-processed imagery. If the value is high, check the point with the largest residual.
 
-7. Preview with the Ghost Layer
+6. Preview with the Ghost Layer
 Click Ghost Layer (Preview) to see the new position of all plots without changing anything yet. A red outline is overlaid on the canvas.
 
-8. Apply the alignment
+7. Apply the alignment
 Click Apply Alignment. A new temporary layer is created, named [original name] (Aligned), with all attributes preserved.
 
 ⚠️ The layer is in memory only. To save it: right-click → Export → Save Features As...
