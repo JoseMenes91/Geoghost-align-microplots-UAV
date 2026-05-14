@@ -28,7 +28,16 @@ Apply SVD to get the optimal rotation matrix.
 Compute translation as the difference between transformed centroids.
 The result is the rotation and translation that minimizes the RMSE across all GCP pairs. With 2 points the fit is exact; with 3 or more the error is distributed.
 
-<img width="839" height="262" alt="image" src="https://github.com/user-attachments/assets/7eae9dbb-3db1-4223-9186-4b24738fccaf" />
+## 🛠 Installation
+
+1. Download or clone this repository.
+2. Copy the `microplot_generator` folder into your local QGIS plugins directory: (e.g., `C:\Users\YourUser\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins`).
+
+ <img width="651" height="341" alt="image" src="https://github.com/user-attachments/assets/06502863-1624-48f6-96f2-2e421811ab03" />
+<img width="988" height="750" alt="image" src="https://github.com/user-attachments/assets/c715fc19-04e3-4601-afab-f05e53ac147a" />
+<img width="839" height="262" alt="image" src="https://github.com/user-attachments/assets/69b1add6-b18a-4a74-9391-36b2198fe5ab" />
+<img width="949" height="225" alt="image" src="https://github.com/user-attachments/assets/2e0f7e1f-57e6-42bf-b3b9-95533d09086e" />
+
 
 
 Step-by-step tutorial
