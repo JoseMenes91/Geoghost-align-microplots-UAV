@@ -48,6 +48,8 @@ Load into QGIS the new orthomosaic (raster) and the plot shapefile (vector).
 2. Open the GeoGhost panel
 Click the GeoGhost icon in the toolbar, or go to GeoGhost → Align Vectors (Rigid Body).
 
+<img width="633" height="740" alt="image" src="https://github.com/user-attachments/assets/a4a70cd8-41d6-4757-91d1-49281d31efce" />
+
 3. Select layers
 Vector Layer to Align → the plot shapefile.
 Destination Orthomosaic — Vectors (New Flight) → the new flight raster.
@@ -63,7 +65,13 @@ Find recognizable points visible in both orthomosaics
 
 Origin: click Capture Origin Points → click on the main canvas → a red cross appears.
 
+<img width="219" height="47" alt="image" src="https://github.com/user-attachments/assets/1b13b0ed-c8ec-41a1-a27b-e36765db0448" />
+
 Destination: click Capture Destination Points → click on the Viewer → a blue cross appears.
+
+<img width="210" height="51" alt="image" src="https://github.com/user-attachments/assets/5f1b77a3-bf09-4286-b695-733ac0b972a7" />
+
+
 
 <img width="945" height="526" alt="image" src="https://github.com/user-attachments/assets/83d659e1-7d11-413b-b8d6-f5af3f76e533" />
 
@@ -73,9 +81,12 @@ Repeat this process for at least 4 points, ideally placing one in each corner of
 
 
 6. Preview with the Ghost Layer
-Click Ghost Layer (Preview) to see the new position of all plots without changing anything yet. A red outline is overlaid on the canvas.
+Click Ghost Layer (Preview) to see the new position of all plots without changing anything yet. A red outline is overlaid on the canvas. 
+⚠️ Note: Make sure the new orthomosaic is visible in the QGIS main canvas to verify the alignment, as the old raster might still be active and covering the current view."
 
-7. Apply the alignment
+<img width="533" height="561" alt="image" src="https://github.com/user-attachments/assets/eeba0de5-9c56-4be5-acbd-b6bd969263fa" />
+
+8. Apply the alignment
 Click Apply Alignment. A new temporary layer is created, named [original name] (Aligned), with all attributes preserved.
 
 ⚠️ The layer is in memory only. To save it: right-click → Export → Save Features As...
