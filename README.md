@@ -1,4 +1,4 @@
-# Geoghost-align-microplots-UAV
+# Geoghost-align-microplots-UAV-QGIS
 Microplot Vector Layer Georeferencing for UAV Trials A QGIS plugin for the alignment and translation of experimental grids using control points.
 
 
@@ -14,7 +14,7 @@ When running multiple UAV flights over the same field trial, the orthomosaics fr
 
 The usual workaround is to manually move and rotate the vector layer — slow and hard to reproduce. GeoGhost automates that process.
 
-The workflow is simple: mark the same identifiable point (a plot corner, a stake, a reference pot) on both the old and the new orthomosaics, repeat that for at least 2 points, and the plugin computes the optimal translation and rotation to snap the shapefile into alignment with the new image.
+The workflow is simple: mark the same identifiable point on both the old and the new orthomosaics, repeat that for at least 2 points, and the plugin computes the optimal translation and rotation to snap the shapefile into alignment with the new image.
 
 How it works (the math, briefly)
 GeoGhost applies a rigid body transformation: translation + rotation, no scaling, no distortion. Plot polygons keep their exact shape and size — they just move and rotate as a whole.
@@ -40,7 +40,8 @@ The result is the rotation and translation that minimizes the RMSE across all GC
 
 
 
-Step-by-step tutorial
+## Step-by-step tutorial
+
 1. Set up the project
 Load into QGIS the new orthomosaic (raster) and the plot shapefile (vector).
 
