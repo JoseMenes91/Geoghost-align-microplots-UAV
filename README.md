@@ -28,14 +28,8 @@ Apply SVD to get the optimal rotation matrix.
 Compute translation as the difference between transformed centroids.
 The result is the rotation and translation that minimizes the RMSE across all GCP pairs. With 2 points the fit is exact; with 3 or more the error is distributed.
 
-Installation
-Download or clone this repository.
-Copy the rigid_vector_aligner folder into your QGIS plugins directory:
-Windows: %APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\
-Linux / Mac: ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-Restart QGIS.
-Go to Plugins → Manage and Install Plugins, search for "GeoGhost" and enable it.
-Requirements: QGIS 3.0+ · NumPy (bundled with QGIS)
+<img width="839" height="262" alt="image" src="https://github.com/user-attachments/assets/7eae9dbb-3db1-4223-9186-4b24738fccaf" />
+
 
 Step-by-step tutorial
 1. Set up the project
