@@ -1,3 +1,77 @@
 # Geoghost-align-microplots-UAV
 Microplot Vector Layer Georeferencing for UAV Trials A QGIS plugin for the alignment and translation of experimental grids using control points.
+
+
 <img width="500" height="500" alt="icon-removebg-preview" src="https://github.com/user-attachments/assets/2d0c51ee-bbbd-4ac9-bf14-0813058d1d73" />
+
+
+
+
+QGIS 3 Plugin · UAV plot alignment via rigid body transformation
+
+What problem does it solve?
+When running multiple UAV flights over the same field trial, the orthomosaics from different dates don't land in exactly the same position. The drone GPS has inherent error, and the photogrammetric processing adds further offset. The result: the plot design shapefile that worked perfectly for the first flight no longer fits the second one.
+
+The usual workaround is to manually move and rotate the vector layer — slow and hard to reproduce. GeoGhost automates that process.
+
+The workflow is simple: mark the same identifiable point (a plot corner, a stake, a reference pot) on both the old and the new orthomosaics, repeat that for at least 2 points, and the plugin computes the optimal translation and rotation to snap the shapefile into alignment with the new image.
+
+How it works (the math, briefly)
+GeoGhost applies a rigid body transformation: translation + rotation, no scaling, no distortion. Plot polygons keep their exact shape and size — they just move and rotate as a whole.
+
+Internally, it uses the Procrustes algorithm (SVD — Singular Value Decomposition):
+
+Compute centroids of the source and destination point sets.
+Center each point cloud around its centroid.
+Build the cross-covariance matrix between both sets.
+Apply SVD to get the optimal rotation matrix.
+Compute translation as the difference between transformed centroids.
+The result is the rotation and translation that minimizes the RMSE across all GCP pairs. With 2 points the fit is exact; with 3 or more the error is distributed.
+
+Installation
+Download or clone this repository.
+Copy the rigid_vector_aligner folder into your QGIS plugins directory:
+Windows: %APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\
+Linux / Mac: ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
+Restart QGIS.
+Go to Plugins → Manage and Install Plugins, search for "GeoGhost" and enable it.
+Requirements: QGIS 3.0+ · NumPy (bundled with QGIS)
+
+Step-by-step tutorial
+1. Set up the project
+Load into QGIS the new orthomosaic (raster) and the plot shapefile (vector).
+
+2. Open the GeoGhost panel
+Click the GeoGhost icon in the toolbar, or go to GeoGhost → Align Vectors (Rigid Body).
+
+3. Select layers
+Vector Layer to Align → the plot shapefile.
+Destination Orthomosaic — Vectors (New Flight) → the new flight raster.
+If layers don't appear, click Refresh Layers.
+
+4. Open the Orthomosaic Viewer
+Click Open Destination Orthomosaic Viewer. A secondary window opens with an independent canvas showing the new orthomosaic. You can place it on a second monitor.
+
+The main canvas shows the old flight (where the vector currently is); the viewer shows the new flight (where it needs to go).
+
+5. Capture Ground Control Points (GCPs)
+Find recognizable points visible in both orthomosaics (plot corners, stakes, reference markers).
+
+Origin: click Capture Origin Points → click on the main canvas → a red cross appears.
+
+Destination: click Capture Destination Points → click on the Viewer → a blue cross appears.
+
+Repeat for at least 2 pairs. With 3 or more you get a real RMSE.
+
+💡 Choose points that are well spread apart. One near the center + one at a trial edge works well.
+
+6. Check the RMSE
+Calculated automatically once you have 2 complete pairs. Each row shows dX, dY and individual residual. RMSE < 0.05 m is typical with well-processed imagery. If the value is high, check the point with the largest residual.
+
+7. Preview with the Ghost Layer
+Click Ghost Layer (Preview) to see the new position of all plots without changing anything yet. A red outline is overlaid on the canvas.
+
+8. Apply the alignment
+Click Apply Alignment. A new temporary layer is created, named [original name] (Aligned), with all attributes preserved.
+
+⚠️ The layer is in memory only. To save it: right-click → Export → Save Features As...
