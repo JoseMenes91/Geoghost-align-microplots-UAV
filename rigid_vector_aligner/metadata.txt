@@ -1,0 +1,11 @@
+[general]
+name=GeoGhost: Align Microplots - UAV
+qgisMinimumVersion=3.0
+description=Realigns UAV plot design shapefiles to new orthomosaics using rigid body transformation (translation + rotation). No geometry distortion.
+version=0.2
+author=José Fernando Menes
+email=info@agritech.com
+about=Every time you fly a new UAV mission, the orthomosaic shifts slightly compared to the previous one. GeoGhost solves this in a few clicks: mark pairs of Ground Control Points (GCPs) — the same identifiable spot on both the old and new orthomosaics — and the plugin automatically calculates the best rigid translation and rotation to snap your plot design vector layer into perfect alignment with the new image. Your plot shapes are never distorted — only moved and rotated as a whole. The result is a new aligned vector layer ready to export, with all original attributes preserved. Supports Spanish and English UI based on QGIS language settings.
+category=Vector
+icon=icon.png
+experimental=False
